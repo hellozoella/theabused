@@ -1,0 +1,277 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <title>Parallax Scrolling Tutorial</title>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <style>
+        body {padding:0; margin:0; background: #333; font-family: "Times New Roman", Times, serif;}
+        p {margin:0;}
+        .clear {float: none}
+        .bg {
+            height: 2300px;
+            background: #ebe8ef;
+            min-width: 800px;
+        }
+        .buddy {width: 50%; height: 2300px;}
+        .left {float: left}
+        .right {float: right}
+        #left {
+            float: left;
+            background: url(left.jpg) no-repeat fixed;
+            background-position: 30% 100%;
+            background-size: 30%;
+        }
+        #right {
+            float: right;
+            background: url(right.jpg) no-repeat fixed;
+            background-size: 35%;
+            background-position: 79% 100%;
+        }
+        .words {position: relative; top: 800px;}
+        .words p {font-size: 30px; text-align: center; }
+        .words p span { font-size: 25px; font-weight: 1000; text-align: center;}
+        
+        .bg_2 {
+            height: 1060px;
+            background: #002D2A;
+            min-width: 800px;}
+        .words_2 p { font-size: 50px;}
+        .words_2 h4 { font-size: 30px; font-weight: 100; letter-spacing: 0.7px;}
+        .words_2 h4,.words_2 p {text-align: center; margin:0; color: #CBCBCB; text-shadow: 2px 3px 0 rgba(0, 0, 0, 0.35), 0 4px 0 rgba(0, 0, 0, 0.26)}
+        .words_2 .notes {font-size: 18px; font-weight: 100;letter-spacing: 1px;}
+        .words_2 .mine {font-size: 18px; width: 180px; margin: 0 auto; padding-top: 50px;}
+        .words_2 .mine p {color: rgba(255, 255, 255, 0.35); font-size: 20px;}
+        
+        .bg_3 {
+            height: 750px;
+            background: #FAFBFC;
+            min-width: 800px;
+        }
+        .bg_3 img {width: 35%;}
+        .bg_3 .right {width: 45%; padding-left: 2%; padding-right: 8%}
+        .words_3 p {font-size: 22px;}
+        
+        .bg_4 {
+            height: 800px;
+            background: #F1F2F1;
+            min-width: 800px;
+        }
+        .bg_4 p {text-align: center; font-size: 25px;}
+        
+        
+        .words_5 p {font-size: 25px; text-align: left; padding-right: 8%;}
+        .words_5 .left {width: 40%}
+        .words_5 .right {width: 60%}
+        
+        .bg_6 {height: 700px;
+            background: #F1F2F1;
+            min-width: 800px;}
+        .words_6 h2{
+           text-align: center;
+            font-size: 30px; 
+            font-weight: 100;
+            margin-top: 0;
+        }
+        .words_6 .left {
+            padding-left: 5%;
+            width: 43%;
+        }
+        
+        .bg_7 {height: 430px;
+            background: #ebe8ef;
+            min-width: 800px;
+            padding-top: 300px;
+        }
+        .bg_7 p {font-size: 40px; text-align: center;}
+        
+    </style>
+</head>
+
+<body>
+
+    <div class="bg">
+
+        <div id="left" class="buddy" data-type="scroll" data-speed="8"></div>
+        <div id="right" class="buddy" data-type="scroll" data-speed="8"></div>
+        <div class="clear"></div>
+        
+        <div class="words">
+            <p>DOES THIS LOOK FAMILIAR TO YOU?</p>
+            <p style="position: relative; top: 400px;">This is ABUSE</p>
+            <p style="position: relative; top: 800px;"><span>Globally, about 1/3 women will be beaten or raped during their lifetime.</span></p>
+            <p style="position: relative; top: 800px;"><span>It is a huge problem.</span></p>
+        </div>
+        
+    </div>
+    
+    <script>
+    $(document).ready(function(){
+        $window = $(window);
+        $(window).scroll(function(){
+             $('[data-type="scroll"]').each(function(){
+                $(this).data('speed', $(this).attr('data-speed'));
+
+                var leftPos = $window.scrollTop() / $('#left').data('speed'),
+                    rightPos = - ($window.scrollTop() / $('#right').data('speed')),
+                    left = 30 - leftPos,
+                    right = 79 - rightPos,
+                    oneWidth = 50 - $window.scrollTop() / $('#right').data('speed');
+                 
+                 
+                if(left < 0){
+                   left = 0;   
+                }
+                if(right > 100){
+                    right = 100;   
+                }
+                if(oneWidth < 44){
+                   oneWidth = 44
+                }
+                left += '%';
+                right += '%';
+                oneWidth += '%';
+                 
+                $('.buddy').width( oneWidth );
+                
+                    
+                console.log(oneWidth);
+
+                $('#left').css({ backgroundPositionX: left });
+                $('#right').css({ backgroundPositionX: right });
+                
+
+        }) //end [data-type].each        
+        })// end scroll        
+    }) //end js
+    </script>
+    
+        <div class="bg_2">
+            <div class="words_2">
+                <div style="padding-top: 20%; ">
+                    <h4>As a designer, what could we do?</h4>
+                    <p style="padding-top: 350px;">FOR ABUSED</p>
+                    <p class="notes">an interactive undergarment designed for the abused</p>
+                    <div class="mine">
+                    <p>Anan Huo | MA Interaction Design Communication, LCC</p>
+                    </div>
+                </div>
+            </div>      
+    </div>
+    
+    <div class="bg_3">
+    <div class="words_3">
+        <div style="padding-top: 8%; ">
+              <img src="abused.jpg" class="left">
+              
+            <div class="right">
+                <h2 style="font-size: 30px; font-weight: 100;">INSPIRATION</h2>
+                <p>The image of the 21st century woman is confident, prosperous, glowing with health and beauty. However globally, it is reported that about one in three women will be beaten or raped during their lifetime. </p>
+                <br>
+                <p>Some injuries from domestic violence are easily to notice, such as eye injury. But for ones under clothes, it is more difficult for other people to notice. Sadly, some areas such as stomach or breast, are difficult to even make injury marks. </p>
+                <br>
+                <p>An abused woman is normally too scared to publish the fact, as they are often overwhelmed by fear -- fear from further violence, the unknown, her safety and the safety of her children. It is more likely that they would tell only few trustworthy people, they may be their best friends or families.</p>
+            </div>
+        </div>
+    </div>      
+    </div>
+    
+    
+        <div class="bg_4">
+    <div class="words_4">
+        <div style="padding-top: 8%">
+            <div style="width: 50%; margin:0 auto">
+                <p>What if a garment that is able to <i>recognise punches</i> and accordingly <i>send secret messgaes</i> to their friends, and <i>keep the punch data</i>?</p><br>
+                <p><i>An Interactive Undergarment?</i></p>
+            </div>
+            <div style="margin:100px auto 0 auto; width: 50%;">
+             <img src="punch.png" width="100%">
+            </div>
+        </div>
+    </div>      
+    </div>
+    
+    
+    <div class="bg_4">
+    <div class="words_5">
+                <div class="left" style="padding-top: 8%;">
+                 <img width="200px" src="http://cdn.instructables.com/FOS/C7EU/FTVVI29Z/FOSC7EUFTVVI29Z.MEDIUM.jpg">
+                 <img width="200px" src="http://antastique.net/img/blog/secon.jpg">
+                 <br>
+                 <i>Velostat | Foil - electric cycle</i>
+                 <br>
+                 <img width="200px"  src="https://learn.adafruit.com/system/assets/assets/000/017/732/medium800/adafruit_products_kitup.jpg?1404231178">
+                    <img width="200px"  src="http://antastique.net/img/blog/line.JPG"><br>
+                    <i>Adafruit FONA | Wiring Guide</i>
+                </div>
+        
+                <div class="right">
+                <h2 style="font-size: 30px; font-weight: 100;">DESIGN PROCESS AND PROGRAMMING</h2>
+                <p>Material Tests</p>
+                <br>
+                    <p>The 1st prototype I used a touching sensor called 'Velostat'. I wished it would recognise punches, but the test result was not very satisfying as the sensor is "too sensive" -- it reacts with only light touching. </p><br>
+                <p>The 2nd prototype's idea was suggested by David Kind that he recommoded to use electric cycle rather touching sensor. The rationale is basicaly that using foils to creat a elctric cyle, and through the cycle to recognise punch.</p>
+                <br>
+                <p>Arduino -- UNO + Adafruit FONA</p><br>
+                    <p>See more Arduino programming from my blog posts <a href="http://antastique.net/blog.html" target="_blank">here</a>.</p>
+            </div>
+        </div>
+    </div>      
+
+    
+<div class="bg_6">
+    <div class="words_6">
+        <h2>SELECTED FEEDBACKS FROM CHARITY VOLUNTERRS AND A MOTHER</h2>
+        <br>
+        <div class="left">
+            <p><b>From Helen Ghebreluul:</b></p><br>
+            <p>1. How do you find 'For Abused', do you think it can in some way solve abused women's problem?</p><br>
+
+<p>Yes, I think so. Abused women need a way to stay safe and a device like this would help those afraid to speak out</p><br>
+<p>2. Do you think 'underneath clothes (top)' is a good way to demonstrate it?</p><br>
+
+<p>It is as long as it stays discreet.<p><br>
+<p>3. Do you find the functions useful? (Recognise punch data / Send auto messages / Send and keep data online for further check)</p><br>
+
+<p>I think the functions are useful, especially the data log as it helps build a case against abuser.</p><br>
+<p>4. From your experience, do you think there may be other useful or helpful functions that I didn't think of?</p><br>
+
+<p>As long as it records time and date of attacks it should be sufficient. Recording the force of the strikes may be an idea for the future.</p>
+        </div>
+        
+        <div class="left">
+            <p><b>From Dannielle Hodson:</b></p><br>
+             <p>It is an interesting idea. </p><br>
+            <p>It's been shown that women stay with abusers so maybe if they actually could see how much abuse they were sustaining then they would perhaps think about leaving and have some proof about the abuse should they wish to report it.  The idea that family or friends are connected is good as it offers some outside support. The function of recording blows would be useful but not if the blows are to the face or rest of the body.</p>
+<br>
+<p>About the garment. It would probably be for women who have chosen to remain in an abusive relationship, so if that is the case, their problems are more psychological which a vest would not address. So maybe when the data is downloaded, it can connect with some help group or something depending on the level of abuse sustained the data would know which sources to use.</p>
+<br>
+<p>About the commercial value. I'm not sure it has any commercial value in as much that people will go out and buy it. But perhaps doctors, police or social workers can 'prescribe' the vest as a step towards building a case against an attacker. There are many cases of women being sent to prison because they finally snapped an retaliated against their abuser and as they had not spoken out the abuse were punished further. In an ideal world men that beat women would be locked away after the first time but sadly that is not the case so anything that could help is good.</p>
+        </div>
+    </div>
+
+    </div>  
+    
+    <div class="bg_7">
+        <p>THE END</p>
+        <p style="font-size: 20px;">Anan Huo | MA Interaction Design Communication, LCC</p>
+        <p style="font-size: 20px; padding-top: 300px; color: #999;">
+            See more research, process and product interviews from my blog <a href="http://antastique.net/blog.html" target="_blank">here</a>.<br>
+            Download this web from <a href="" target="_blank">here</a>
+        </p>
+    </div>
+    
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
